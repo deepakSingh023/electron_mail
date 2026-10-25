@@ -1,5 +1,7 @@
 package com.example.mail.util;
 
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.JwtException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -17,30 +19,61 @@ import java.util.Collections;
 @Component
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
-    private final JwtUtil jwtUtils;
-
+    private final JwtUtil jwtUtil;
 
     @Override
     protected void doFilterInternal(
             HttpServletRequest req,
             HttpServletResponse res,
             FilterChain filterChain
-    )throws IOException, ServletException {
+    ) throws IOException, ServletException {
 
-        String authHead = req.getHeader("Authorization");
+        // Refresh tokens are handled by the refresh endpoint/service.
+        if ("/api/auth/refresh".equals(req.getServletPath())) {
+            filterChain.doFilter(req, res);
+            return;
+        }
 
-        if (authHead != null && authHead.startsWith("Bearer")){
-            String token = authHead.substring(7);
+        String authHeader = req.getHeader("Authorization");
 
-            if (jwtUtils.isTokenValid(token)) {
-                String userId = jwtUtils.extractUserId(token);
+        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+            filterChain.doFilter(req, res);
+            return;
+        }
 
+        String token = authHeader.substring(7);
 
-                UsernamePasswordAuthenticationToken authentication =
-                        new UsernamePasswordAuthenticationToken(userId, null, Collections.emptyList());
+        try {
+            Claims claims = jwtUtil.extractClaims(token);
 
-                SecurityContextHolder.getContext().setAuthentication(authentication);
+            String tokenType = claims.get("token_type", String.class);
+
+            // Only access tokens can authenticate normal API requests.
+            if (!"access".equals(tokenType)) {
+                res.sendError(
+                        HttpServletResponse.SC_UNAUTHORIZED,
+                        "Access token required"
+                );
+                return;
             }
+
+            UsernamePasswordAuthenticationToken authentication =
+                    new UsernamePasswordAuthenticationToken(
+                            claims.getSubject(),
+                            null,
+                            Collections.emptyList()
+                    );
+
+            SecurityContextHolder.getContext()
+                    .setAuthentication(authentication);
+
+        } catch (JwtException | IllegalArgumentException e) {
+            SecurityContextHolder.clearContext();
+            res.sendError(
+                    HttpServletResponse.SC_UNAUTHORIZED,
+                    "Invalid or expired access token"
+            );
+            return;
         }
 
         filterChain.doFilter(req, res);

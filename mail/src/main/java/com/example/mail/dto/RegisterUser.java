@@ -14,14 +14,14 @@ public record RegisterUser(
         @Email
         String email,
 
-        @Size(min = 10 , max = 20)
+        @Size(min = 12 , max = 72)
         @NotBlank
         String password,
 
-        @NotNull
+        @NotBlank
         String private_key,
 
-        @NotNull
+        @NotBlank
         String public_key
 ) {
 }

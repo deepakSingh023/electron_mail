@@ -1,9 +1,7 @@
 package com.example.mail.entity;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,6 +18,7 @@ import java.time.Instant;
 public class Mail {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
     private String userId;
 
     private String receiverId;

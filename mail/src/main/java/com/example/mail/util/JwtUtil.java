@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import javax.crypto.SecretKey;
 import java.nio.charset.StandardCharsets;
 import java.util.Date;
+import java.util.UUID;
 
 @Component
 public class JwtUtil {
@@ -23,18 +24,43 @@ public class JwtUtil {
         key = Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8));
     }
 
-    private final Long EXPIRATION_TIME = 1000L * 60 * 60 * 24 * 7;
+    private static final long ACCESS_EXPIRATION =
+            1000L * 60 * 15; // 15 minutes
+
+    private static final long REFRESH_EXPIRATION =
+            1000L * 60 * 60 * 24 * 7; // 7 days
 
 
-    public String createToken(String userId , String email){
+    public String createAccessToken(String userId , String email){
         return Jwts.builder()
                 .subject(userId)
                 .claim("email",email)
+                .claim("token_type","access")
                 .issuedAt(new Date())
-                .expiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
-                .signWith(key, SignatureAlgorithm.ES256)
+                .expiration(new Date(System.currentTimeMillis() + ACCESS_EXPIRATION))
+                .signWith(key, Jwts.SIG.HS256)
                 .compact();
     }
+
+    public String createRefreshToken(String userId ){
+        return Jwts.builder()
+                .subject(userId)
+                .claim("token_type","refresh")
+                .id(UUID.randomUUID().toString())
+                .issuedAt(new Date())
+                .expiration(new Date(System.currentTimeMillis() + REFRESH_EXPIRATION))
+                .signWith(key, Jwts.SIG.HS256)
+                .compact();
+    }
+
+    public Claims extractClaims(String token) {
+        return Jwts.parser()
+                .verifyWith(key)
+                .build()
+                .parseSignedClaims(token)
+                .getPayload();
+    }
+
 
     public String extractUserId(String token) {
         try {
