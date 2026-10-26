@@ -7,6 +7,12 @@ spring:
     password: your_db_password
     driver-class-name: com.mysql.cj.jdbc.Driver
 
+  mail:
+    properties:
+      "[mail.smtp.connectiontimeout]": 5000
+      "[mail.smtp.timeout]": 3000
+      "[mail.smtp.writetimeout]": 5000
+
 
 app:
   security:

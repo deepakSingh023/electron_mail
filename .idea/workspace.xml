@@ -5,21 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="876efbde-6a3a-4365-8687-065d58b970d1" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/mail/src/main/java/com/example/mail/dto/RefreshResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mail/src/main/java/com/example/mail/exception_handling/exception/UserDoesntExist.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mail/src/main/java/com/example/mail/exception_handling/exception/WrongPassword.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mail/src/main/java/com/example/mail/Config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/mail/src/main/java/com/example/mail/Config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mail/src/main/java/com/example/mail/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/mail/src/main/java/com/example/mail/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mail/src/main/java/com/example/mail/dto/RegisterResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/mail/src/main/java/com/example/mail/dto/RegisterResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mail/src/main/java/com/example/mail/dto/RegisterUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/mail/src/main/java/com/example/mail/dto/RegisterUser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mail/src/main/java/com/example/mail/dto/PublicKey.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mail/src/main/java/com/example/mail/dto/SendMail.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mail/src/main/java/com/example/mail/service/MailService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mail/src/main/java/com/example/mail/service/MailServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mail/src/main/java/com/example/mail/service/SmtpMailService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mail/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/mail/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mail/src/main/java/com/example/mail/entity/Mail.java" beforeDir="false" afterPath="$PROJECT_DIR$/mail/src/main/java/com/example/mail/entity/Mail.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mail/src/main/java/com/example/mail/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/mail/src/main/java/com/example/mail/entity/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mail/src/main/java/com/example/mail/exception_handling/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/mail/src/main/java/com/example/mail/exception_handling/GlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mail/src/main/java/com/example/mail/repository/MailRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/mail/src/main/java/com/example/mail/repository/MailRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mail/src/main/java/com/example/mail/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/mail/src/main/java/com/example/mail/repository/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mail/src/main/java/com/example/mail/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/mail/src/main/java/com/example/mail/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mail/src/main/java/com/example/mail/service/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/mail/src/main/java/com/example/mail/service/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mail/src/main/java/com/example/mail/util/JwtAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/mail/src/main/java/com/example/mail/util/JwtAuthenticationFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mail/src/main/java/com/example/mail/util/JwtUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/mail/src/main/java/com/example/mail/util/JwtUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mail/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/mail/src/main/resources/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mail/src/test/java/com/example/mail/UserServiceImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/mail/src/test/java/com/example/mail/UserServiceImplTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,6 +28,8 @@
       <list>
         <option value="Exception" />
         <option value="Record" />
+        <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -65,23 +64,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/home/deepak-singh/electron_mail",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/deepak-singh/electron_mail&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;
   }
-}]]></component>
+}</component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>

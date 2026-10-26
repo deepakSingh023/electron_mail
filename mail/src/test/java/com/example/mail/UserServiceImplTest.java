@@ -1,9 +1,11 @@
 package com.example.mail;
 
+import com.example.mail.dto.LoginUser;
 import com.example.mail.dto.RegisterResponse;
 import com.example.mail.dto.RegisterUser;
 import com.example.mail.entity.User;
 import com.example.mail.exception_handling.exception.UserAlreadyExist;
+import com.example.mail.exception_handling.exception.WrongPassword;
 import com.example.mail.repository.UserRepository;
 import com.example.mail.service.UserServiceImpl;
 import com.example.mail.util.JwtUtil;
@@ -13,6 +15,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.security.crypto.password.PasswordEncoder;
+
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
@@ -92,4 +96,73 @@ public class UserServiceImplTest {
 
         verify(userRepository).save(any(User.class));
     }
+
+    @Test
+    void loginUserFailed() {
+        LoginUser data = new LoginUser(
+                "alice@gmail.com",
+                "WrongPassword123!"
+        );
+
+        User user = User.builder()
+                .id("user-123")
+                .email("alice@gmail.com")
+                .password("encoded-correct-password")
+                .build();
+
+        when(userRepository.findByEmail("alice@gmail.com"))
+                .thenReturn(Optional.of(user));
+
+        when(passwordEncoder.matches(
+                data.password(),
+                user.getPassword()
+        )).thenReturn(false);
+
+        assertThrows(
+                WrongPassword.class,
+                () -> userService.loginUser(data)
+        );
+
+        verify(jwtUtil, never()).createAccessToken(any(), any());
+        verify(jwtUtil, never()).createRefreshToken(any());
+    }
+
+    @Test
+    void loginUserSuccessful() {
+        LoginUser data = new LoginUser(
+                "alice@gmail.com",
+                "StrongPassword123!"
+        );
+
+        User user = User.builder()
+                .id("user-123")
+                .email("alice@gmail.com")
+                .password("encoded-password")
+                .build();
+
+        when(userRepository.findByEmail(data.email()))
+                .thenReturn(Optional.of(user));
+
+        when(passwordEncoder.matches(
+                data.password(),
+                user.getPassword()
+        )).thenReturn(true);
+
+        when(jwtUtil.createAccessToken(user.getId(), data.email()))
+                .thenReturn("access-token");
+
+        when(jwtUtil.createRefreshToken(user.getId()))
+                .thenReturn("refresh-token");
+
+        RegisterResponse response = userService.loginUser(data);
+
+        assertNotNull(response);
+        assertEquals("user-123", response.id());
+        assertEquals("access-token", response.accessToken());
+        assertEquals("refresh-token", response.refreshToken());
+
+        verify(jwtUtil).createAccessToken(user.getId(), data.email());
+        verify(jwtUtil).createRefreshToken(user.getId());
+    }
+
 }

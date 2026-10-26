@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.Instant;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -19,18 +20,36 @@ public class Mail {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
+    private String id;
+
+    @Column(nullable = false)
     private String userId;
 
     private String receiverId;
 
+    private String ccId;
+
+    @Column(nullable = false)
     private String user_mail;
 
+    @Column(nullable = false)
     private String receiver_mail;
+
+    private String ccMail;
+
+    private String subject;
 
     private String content;
 
-    private String attachment;
+    @ElementCollection
+    @CollectionTable(
+            name = "mail_attachments",
+            joinColumns = @JoinColumn(name = "mail_id")
+    )
+    @Column(name = "attachment_id")
+    private List<String> attachment;
 
+    @Column(nullable = false)
     private Instant created_at;
 
 }
