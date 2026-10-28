@@ -5,18 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="876efbde-6a3a-4365-8687-065d58b970d1" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/mail/src/main/java/com/example/mail/dto/PublicKey.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mail/src/main/java/com/example/mail/dto/SendMail.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mail/src/main/java/com/example/mail/service/MailService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mail/src/main/java/com/example/mail/service/MailServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mail/src/main/java/com/example/mail/service/SmtpMailService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mail/src/main/java/com/example/mail/controller/SesInboundController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mail/src/main/java/com/example/mail/dto/SesReceiptNotification.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mail/src/main/java/com/example/mail/dto/SnsNotification.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mail/src/main/java/com/example/mail/service/SesInboundNotificationService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mail/src/main/java/com/example/mail/service/SesInboundNotificationServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mail/src/test/java/com/example/mail/MailServiceImplTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mail/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/mail/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mail/src/main/java/com/example/mail/entity/Mail.java" beforeDir="false" afterPath="$PROJECT_DIR$/mail/src/main/java/com/example/mail/entity/Mail.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mail/src/main/java/com/example/mail/repository/MailRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/mail/src/main/java/com/example/mail/repository/MailRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mail/src/main/java/com/example/mail/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/mail/src/main/java/com/example/mail/repository/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mail/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/mail/src/main/resources/application.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mail/src/test/java/com/example/mail/UserServiceImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/mail/src/test/java/com/example/mail/UserServiceImplTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mail/src/main/java/com/example/mail/controller/MailController.java" beforeDir="false" afterPath="$PROJECT_DIR$/mail/src/main/java/com/example/mail/controller/MailController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,8 +24,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Exception" />
-        <option value="Record" />
         <option value="Interface" />
+        <option value="Record" />
         <option value="Class" />
       </list>
     </option>

@@ -22,7 +22,7 @@ public class Mail {
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String userId;
 
     private String receiverId;

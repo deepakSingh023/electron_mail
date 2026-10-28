@@ -33,7 +33,7 @@ public class MailController {
         return ResponseEntity.accepted().build();
     }
 
-    @GetMapping("get_key")
+    @GetMapping("/get_key")
     public ResponseEntity<PublicKey> getPublicKey(
             @RequestParam String email
     ){
@@ -41,5 +41,10 @@ public class MailController {
         PublicKey key = mailService.getPublicKey(email);
 
         return ResponseEntity.ok(key);
+    }
+
+    @GetMapping("/get_mails")
+    public ResponseEntity<> getMails(){
+
     }
 }
